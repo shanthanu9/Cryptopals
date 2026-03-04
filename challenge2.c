@@ -16,11 +16,7 @@ int main()
     unsigned char *bytes2 = hex_str_to_bytes(hex_str2, hex_length);
 
     // Compute Fixed XOR
-    unsigned char *out_bytes = (unsigned char*)malloc(byte_length);
-    for (int i = 0; i < byte_length; i++)
-    {
-        out_bytes[i] = bytes1[i] ^ bytes2[i];
-    }
+    unsigned char *out_bytes = fixed_xor(bytes1, bytes2, byte_length);
 
     // Output
     pretty_print_bytes_in_hex(out_bytes, byte_length);

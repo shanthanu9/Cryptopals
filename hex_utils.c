@@ -88,13 +88,26 @@ unsigned char *hex_str_to_bytes(char *hex_str, int hex_length)
 }
 
 /*
+ * Compute fixed xor of 2 byte strings
+ */
+unsigned char *fixed_xor(unsigned char *bytes1, unsigned char *bytes2, int byte_length)
+{
+    unsigned char *out_bytes = (unsigned char *)malloc(byte_length);
+    for (int i = 0; i < byte_length; i++)
+    {
+        out_bytes[i] = bytes1[i] ^ bytes2[i];
+    }
+    return out_bytes;
+}
+
+/*
  * Pretty print bytes in hexadecimal.
  */
 void pretty_print_bytes_in_hex(unsigned char *bytes, int byte_length)
 {
     for (int i = 0; i < byte_length; i++)
     {
-        printf("%x", bytes[i]);
+        printf("%02x", bytes[i]);
     }
     printf("\n");
 }
