@@ -31,7 +31,6 @@ int main()
 
         for (int i = 0; i < 256; i++)
         {
-            // if (i == 255) printf("-\n");
             unsigned char *candidate_bytes_key = (unsigned char *)malloc(byte_length);
 
             for (int j = 0; j < byte_length; j++)
@@ -42,7 +41,6 @@ int main()
             unsigned char *candidate_bytes_msg = fixed_xor(bytes, candidate_bytes_key, byte_length);
 
             int score = count_letter_frequency(candidate_bytes_msg, byte_length);
-            // printf("%d\n", score);
 
             if (score >= 17)
             {

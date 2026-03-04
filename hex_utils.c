@@ -101,6 +101,20 @@ unsigned char *fixed_xor(unsigned char *bytes1, unsigned char *bytes2, int byte_
 }
 
 /*
+ * Compute repeat key xor of bytes with key
+ */
+unsigned char *repeating_key_xor(unsigned char *bytes, unsigned char *key,
+                                 int byte_length, int key_length, int key_start_point)
+{
+    unsigned char *out_bytes = (unsigned char *)malloc(byte_length);
+    for (int i = 0; i < byte_length; i++)
+    {
+        out_bytes[i] = bytes[i] ^ key[(key_start_point + i) % key_length];
+    }
+    return out_bytes;
+}
+
+/*
  * Pretty print bytes in hexadecimal.
  */
 void pretty_print_bytes_in_hex(unsigned char *bytes, int byte_length)
