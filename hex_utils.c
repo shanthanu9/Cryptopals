@@ -1,11 +1,12 @@
 #include "hex_utils.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdint.h>
 
 /*
  * Convert a hexadecimal number (given in char datatype) into decimal variable.
  */
-unsigned char hex_to_decimal(char hex_char)
+uint8_t hex_to_decimal(char hex_char)
 {
     switch (hex_char)
     {
@@ -74,11 +75,11 @@ unsigned char hex_to_decimal(char hex_char)
  * Convert hex string to bytes.
  * The user is responsible for freeing up the memory of bytes allocated.
  */
-unsigned char *hex_str_to_bytes(char *hex_str, int hex_length)
+uint8_t *hex_str_to_bytes(char *hex_str, int hex_length)
 {
     const int byte_length = hex_length / 2;
 
-    unsigned char *bytes = (unsigned char *)malloc(byte_length);
+    uint8_t *bytes = (uint8_t *)malloc(byte_length);
     for (int i = 0; i < byte_length; i++)
     {
         bytes[i] = (hex_to_decimal(hex_str[2 * i]) << 4) + hex_to_decimal(hex_str[2 * i + 1]);
@@ -90,9 +91,9 @@ unsigned char *hex_str_to_bytes(char *hex_str, int hex_length)
 /*
  * Compute fixed xor of 2 byte strings
  */
-unsigned char *fixed_xor(unsigned char *bytes1, unsigned char *bytes2, int byte_length)
+uint8_t *fixed_xor(uint8_t *bytes1, uint8_t *bytes2, int byte_length)
 {
-    unsigned char *out_bytes = (unsigned char *)malloc(byte_length);
+    uint8_t *out_bytes = (uint8_t *)malloc(byte_length);
     for (int i = 0; i < byte_length; i++)
     {
         out_bytes[i] = bytes1[i] ^ bytes2[i];
@@ -103,10 +104,10 @@ unsigned char *fixed_xor(unsigned char *bytes1, unsigned char *bytes2, int byte_
 /*
  * Compute repeat key xor of bytes with key
  */
-unsigned char *repeating_key_xor(unsigned char *bytes, unsigned char *key,
+uint8_t *repeating_key_xor(uint8_t *bytes, uint8_t *key,
                                  int byte_length, int key_length, int key_start_point)
 {
-    unsigned char *out_bytes = (unsigned char *)malloc(byte_length);
+    uint8_t *out_bytes = (uint8_t *)malloc(byte_length);
     for (int i = 0; i < byte_length; i++)
     {
         out_bytes[i] = bytes[i] ^ key[(key_start_point + i) % key_length];
@@ -117,7 +118,7 @@ unsigned char *repeating_key_xor(unsigned char *bytes, unsigned char *key,
 /*
  * Pretty print bytes in hexadecimal.
  */
-void pretty_print_bytes_in_hex(unsigned char *bytes, int byte_length)
+void pretty_print_bytes_in_hex(uint8_t *bytes, int byte_length)
 {
     for (int i = 0; i < byte_length; i++)
     {

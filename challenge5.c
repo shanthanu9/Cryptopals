@@ -1,15 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdint.h>
 #include "hex_utils.h"
 
-int count_letter_frequency(unsigned char *str, int str_len);
+int count_letter_frequency(uint8_t *str, int str_len);
 
 int main()
 {
     // Input from file
     const char INPUT_FILE_NAME[] = "5.txt";
-    unsigned char REPEAT_KEY[] = "ICE";
+    uint8_t REPEAT_KEY[] = "ICE";
     const int REPEAT_KEY_LENGTH = 3;
     FILE *fp = fopen(INPUT_FILE_NAME, "r");
 
@@ -34,10 +35,10 @@ int main()
     fread(buffer, 1, file_size, fp);
     buffer[file_size] = '\0';
 
-    unsigned char *bytes = buffer;
+    uint8_t *bytes = buffer;
     const int byte_length = strlen(bytes);
 
-    unsigned char *out_bytes = repeating_key_xor(bytes, REPEAT_KEY,
+    uint8_t *out_bytes = repeating_key_xor(bytes, REPEAT_KEY,
                                                  byte_length, REPEAT_KEY_LENGTH, 0);
     pretty_print_bytes_in_hex(out_bytes, byte_length);
     

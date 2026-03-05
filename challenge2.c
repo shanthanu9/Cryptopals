@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <stdint.h>
 #include "hex_utils.h"
 
 int main()
@@ -12,11 +13,11 @@ int main()
     const int byte_length = hex_length / 2;
 
     // Convert hex str to bytes
-    unsigned char *bytes1 = hex_str_to_bytes(hex_str1, hex_length);
-    unsigned char *bytes2 = hex_str_to_bytes(hex_str2, hex_length);
+    uint8_t *bytes1 = hex_str_to_bytes(hex_str1, hex_length);
+    uint8_t *bytes2 = hex_str_to_bytes(hex_str2, hex_length);
 
     // Compute Fixed XOR
-    unsigned char *out_bytes = fixed_xor(bytes1, bytes2, byte_length);
+    uint8_t *out_bytes = fixed_xor(bytes1, bytes2, byte_length);
 
     // Output
     pretty_print_bytes_in_hex(out_bytes, byte_length);
