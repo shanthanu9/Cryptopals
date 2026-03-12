@@ -1,0 +1,6 @@
+Challenge 6 is requiring a lot of code. 
+First things first, let's deal with handling base64 data correctly
+
+hex_utils.h is a low level library.
+
+User are expected to use byte_buffer.h instead directly
